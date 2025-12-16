@@ -1,0 +1,176 @@
+/* styles/components.css */
+
+.widget {
+  background: var(--bg-widget);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
+}
+
+.widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.widget-header {
+  padding: 14px 18px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.widget-header h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--danger);
+}
+
+.widget-body {
+  padding: 20px;
+}
+
+/* Кнопки */
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-add,
+.btn-refresh {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-add:hover,
+.btn-refresh:hover {
+  background: var(--accent-hover);
+}
+
+/* ToDo Widget */
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.input-task {
+  flex: 1;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.input-task::placeholder {
+  color: var(--text-secondary);
+}
+
+.input-task:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.task-list {
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+
+.task-text {
+  flex: 1;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.task-text.task-done {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-done {
+  background: var(--success);
+  color: white;
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.btn-done:hover {
+  background: #51c66a;
+}
+
+.btn-delete {
+  background: var(--danger);
+  color: white;
+  font-size: 12px;
+  padding: 6px 10px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-delete:hover {
+  background: #ff5252;
+}
+
+/* Quote & Weather */
+.quote-text, .weather-temp {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.quote-author, .weather-desc {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Константин Кан | Портфолио</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">Кан Константин</a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-list" id="navList">
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#education">Образование</a></li>
+                <li><a href="#skills">Навыки</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <!-- 🔄 Кнопка "Назад" -->
+            <a href="../" id="back-button" title="Вернуться назад">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </a>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Константин Кан</h1>
+                        <p class="hero-subtitle">Студент СПбГУПТД, специальность "Прикладная информатика в дизайне"</p>
+                        <p class="hero-description">Создаю цифровые решения на стыке технологий и дизайна. Увлекаюсь визуальными эффектами, анимацией и UX/UI дизайном.</p>
+                        <a href="#contact" class="btn">Связаться со мной</a>
+                    </div>
+                    <div class="hero-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about">
+            <div class="container">
+                <h2 class="section-title">Обо мне</h2>
+                <div class="about-content">
+                    <p>Я студент Санкт-Петербургского государственного университета промышленных технологий и дизайна, обучаюсь по специальности "Прикладная информатика в дизайне". Это направление позволяет мне сочетать технические знания в области информатики с творческими навыками в дизайне.</p>
+                    <p>Меня интересует создание цифровых продуктов, которые не только функциональны, но и эстетически привлекательны. Особенно увлекаюсь моушн-дизайном и визуальными эффектами, что привело меня к изучению Adobe After Effects.</p>
+                    <p>В будущем планирую развиваться как UX/UI дизайнер с сильной технической базой, способный создавать полноценные цифровые решения от концепции до реализации.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section education">
+            <div class="container">
+                <h2 class="section-title">Образование</h2>
+                <div class="education-item">
+                    <h3 class="education-title">Санкт-Петербургский государственный университет промышленных технологий и дизайна (СПбГУПТД)</h3>
+                    <p class="education-period">2022 - настоящее время</p>
+                    <p class="education-details">Специальность: Прикладная информатика в дизайне</p>
+                    <p class="education-details">Направление подготовки: Информационные системы и технологии в дизайне</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section skills">
+            <div class="container">
+                <h2 class="section-title">Навыки</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Дизайн</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span class="skill-name">Adobe Illustrator</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Adobe Photoshop</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Figma</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="90"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Видео и моушн</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span class="skill-name">Adobe After Effects</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="75"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Adobe Premiere Pro</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="70"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Веб-технологии</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span class="skill-name">HTML/CSS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="70"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Адаптивная верстка</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="80"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section projects">
+            <div class="container">
+                <h2 class="section-title">Проекты</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="project-title">Брендинг для кафе</h3>
+                        <p class="project-description">Разработка логотипа и фирменного стиля для кофейни в Санкт-Петербурге. Создана целостная визуальная идентификация, включая меню, упаковку и сувенирную продукцию.</p>
+                        <div class="project-tags">
+                            <span class="tag">Adobe Illustrator</span>
+                            <span class="tag">Photoshop</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="project-title">Моушн-ролик для мероприятия</h3>
+                        <p class="project-description">Создание анимированного промо-ролика для студенческого фестиваля. Включает анимацию логотипа, титров и визуальных эффектов синхронизированных с музыкой.</p>
+                        <div class="project-tags">
+                            <span class="tag">After Effects</span>
+                            <span class="tag">Premiere Pro</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="project-title">Прототип мобильного приложения</h3>
+                        <p class="project-description">Дизайн и прототипирование мобильного приложения для заказа еды. Созданы основные экраны, интерактивные элементы и анимации переходов.</p>
+                        <div class="project-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">Прототипирование</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2 class="section-title">Контакты</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>Email</h3>
+                                <p>konstantin.kan@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h3>Телефон</h3>
+                                <p>+7 (XXX) XXX-XX-XX</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3>Местоположение</h3>
+                                <p>Санкт-Петербург, Россия</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Форма обратной связи</h3>
+                        <form id="feedbackForm">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Ваш email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" rows="4" placeholder="Ваше сообщение" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Отправить сообщение</button>
+                        </form>
+                        <div id="formMessage" class="form-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2025 Константин Кан. Все права защищены.</p>
+                    <p class="ai-info">Сайт создан с использованием DeepSeek - время выполнения: 10 минут</p>
+                    <p class="js-info">JavaScript функционал: переключение темы, мобильное меню, анимация навыков, форма обратной связи, плавная прокрутка</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
