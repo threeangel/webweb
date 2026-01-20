@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IEM Cologne Major 2026</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Новые шрифты -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">IEM Cologne 2026</h1>
+      <nav class="nav">
+        <a href="index.html" class="active">Главная</a>
+        <a href="tickets.html">Билеты</a>
+        <a href="about.html">О событии</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-video-container">
+        <video autoplay muted loop playsinline class="hero-video">
+          <source src="vid/cs2.mp4" type="video/mp4">
+          <div class="hero-fallback">IEM Cologne 2026</div>
+        </video>
+      </div>
+      <div class="container hero-content">
+        <div class="hero-logo">
+          <img src="img/IEM.webp" alt="IEM Cologne 2026">
+        </div>
+        <p class="dates">IEM COLOGNE 2026</p>
+        <a href="tickets.html" class="btn btn-primary">Купить билеты</a>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="container">
+          <h1>Что такое IEM Cologne?</h1>
+          <p>Кафедральный собор Counter-Strike вновь был освящен. 32 лучшие команды мира совершат паломничество в Кельн, где они сразятся за титул чемпионов IEM Cologne 2026.</p>
+          <p>Первый крупный чемпионат года — это площадка, на которой создаются легенды в этой игре. Хотите стать свидетелем того, как творится история? Подпишитесь, чтобы всегда быть в курсе событий, связанных с билетами.</p>
+      </div>
+    </section>
+
+    <section class="teams-section">
+      <div class="container">
+          <h1>Участники турнира</h1>
+          <p> 16 команд квалифицируются через региональные RMR-турниры. Список будет объявлен ближе к дате события.</p>
+          <div class="teams-grid">
+            <!-- 16 карточек -->
+            <div class="team-card"><div class="team-placeholder"> <img src="img/vit.webp"> </div><span>Vitality</span></div>
+            <div class="team-card"><div class="team-placeholder"><img src="img/fal.webp"></div><span>Falcons</span></div>
+            <div class="team-card"><div class="team-placeholder"><img src="img/spi.png"></div><span>Team Spirit</span></div>
+            <div class="team-card"><div class="team-placeholder"><img src="img/mng.webp"></div><span>Mongolz</span></div>
+            <div class="team-card"><div class="team-placeholder"><img src="img/aur.webp"></div><span>Aurora</span></div>
+            <div class="team-card"><div class="team-placeholder"><img src="img/3dm.webp"></div><span>3DMAX</span></div>
+            <div class="team-card"><div class="team-placeholder"><img src="img/pai.webp"></div><span>paiN</span></div>
+            <div class="team-card"><div class="team-placeholder"><img src="img/par.webp"></div><span>PARIVISION</span></div>
+            <div class="team-card"><div class="team-placeholder">TBD</div><span>Unknown</span></div>
+            <div class="team-card"><div class="team-placeholder">TBD</div><span>Unknown</span></div>
+            <div class="team-card"><div class="team-placeholder">TBD</div><span>Unknown</span></div>
+            <div class="team-card"><div class="team-placeholder">TBD</div><span>Unknown</span></div>
+            <div class="team-card"><div class="team-placeholder">TBD</div><span>Unknown</span></div>
+            <div class="team-card"><div class="team-placeholder">TBD</div><span>Unknown</span></div>
+            <div class="team-card"><div class="team-placeholder">TBD</div><span>Unknown</span></div>
+            <div class="team-card"><div class="team-placeholder">TBD</div><span>Unknown</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 ESL Gaming. Все права защищены.</p>
+      <p><a href="#">Политика конфиденциальности</a></p>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        document.body.classList.add('scrolled');
+      } else {
+        document.body.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Билеты — IEM Cologne Major 2026</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">IEM Cologne 2026</h1>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="tickets.html" class="active">Билеты</a>
+        <a href="about.html">О событии</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container tickets-checkout-page">
+    <div class="page-grid">
+      <!-- Левая часть: выбор билетов -->
+      <section class="tickets-section">
+        <h1>IEM Cologne Major 2026 Stage 3</h1>
+        <div class="tickets-grid" id="ticketsGrid">
+          <!-- Билеты генерируются через JS -->
+        </div>
+      </section>
+
+      <!-- Правая часть: корзина -->
+      <aside class="cart-sidebar">
+        <h1>Ваша корзина</h1>
+        <div id="cartItems" class="cart-items">
+          <p class="empty-cart">Корзина пуста</p>
+        </div>
+        <div class="cart-summary">
+          <div class="promo-input">
+            <input type="text" id="promoCode" placeholder="Промокод (SAVE10)">
+            <button id="applyPromo" class="btn btn-small">Применить</button>
+          </div>
+          <div class="total-row">
+            <span>Итого:</span>
+            <strong id="totalPrice">€0</strong>
+          </div>
+          <a href="checkout.html" id="checkoutBtn" class="btn btn-primary full-width">Перейти к оплате</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 ESL Gaming. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Данные билетов
+    const tickets = [
+      { id: 'group', name: 'Group Stage Pass', desc: '1–10 июня', price: 49 },
+      { id: 'playoffs', name: 'Playoffs Pass', desc: '11–18 июня', price: 89 },
+      { id: 'final', name: 'Grand Final Ticket', desc: '21 июня', price: 129 },
+      { id: 'full', name: 'Full Access Pass', desc: 'Весь турнир', price: 199 }
+    ];
+
+    // Загрузка и ОЧИСТКА корзины
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    // Удаляем всё с quantity <= 0 (защита от "мёртвых" записей)
+    cart = cart.filter(item => item.quantity > 0);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    let promoApplied = false;
+
+    // === Функции ===
+
+    function renderTickets() {
+      const grid = document.getElementById('ticketsGrid');
+      grid.innerHTML = '';
+      tickets.forEach(ticket => {
+        const existing = cart.find(i => i.id === ticket.id);
+        const qty = existing ? existing.quantity : 0;
+        const card = document.createElement('div');
+        card.className = 'ticket-card';
+        card.innerHTML = `
+          <h3>${ticket.name}</h3>
+          <p>${ticket.desc}</p>
+          <p class="price">€${ticket.price}</p>
+          <div class="quantity-controls">
+            <button class="qty-btn" onclick="updateQuantity('${ticket.id}', -1)">–</button>
+            <span class="qty-value">${qty}</span>
+            <button class="qty-btn" onclick="updateQuantity('${ticket.id}', 1)">+</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderCart() {
+      const cartItemsEl = document.getElementById('cartItems');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+
+      // Обновляем корзину из актуального localStorage
+      cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      cart = cart.filter(item => item.quantity > 0); // ещё раз на всякий случай
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+        checkoutBtn.style.display = 'none';
+        document.getElementById('totalPrice').textContent = '€0';
+        return;
+      }
+
+      checkoutBtn.style.display = 'block';
+      let html = '';
+      let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      let finalTotal = promoApplied ? Math.round(total * 0.9) : total;
+
+      cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        html += `
+          <div class="cart-item">
+            <div>
+              <strong>${item.name}</strong><br>
+              <small>€${item.price} × ${item.quantity}</small>
+            </div>
+            <div>€${subtotal.toFixed(2)}</div>
+          </div>
+        `;
+      });
+
+      cartItemsEl.innerHTML = html;
+      document.getElementById('totalPrice').textContent = `€${finalTotal.toFixed(2)}`;
+    }
+
+    // Глобальная функция для обновления количества
+    window.updateQuantity = function(id, delta) {
+      const ticket = tickets.find(t => t.id === id);
+      if (!ticket) return;
+
+      // Загружаем свежую корзину
+      let currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+      currentCart = currentCart.filter(item => item.quantity > 0);
+
+      let item = currentCart.find(i => i.id === id);
+      if (!item) {
+        item = { id: ticket.id, name: ticket.name, price: ticket.price, quantity: 0 };
+        currentCart.push(item);
+      }
+
+      item.quantity += delta;
+
+      // Если <= 0 — удаляем
+      if (item.quantity <= 0) {
+        currentCart = currentCart.filter(i => i.id !== id);
+      }
+
+      // Сохраняем и обновляем
+      localStorage.setItem('cart', JSON.stringify(currentCart.filter(i => i.quantity > 0)));
+      renderTickets();
+      renderCart();
+    };
+
+    // Промокод
+    document.getElementById('applyPromo').addEventListener('click', () => {
+      const code = document.getElementById('promoCode').value.trim().toUpperCase();
+      promoApplied = (code === 'SAVE10');
+      if (promoApplied) {
+        alert('Промокод применён: скидка 10%!');
+      } else if (code) {
+        alert('Неверный промокод');
+      }
+      renderCart();
+    });
+
+    // Инициализация
+    renderTickets();
+    renderCart();
+  </script>
+</body>
+</html>

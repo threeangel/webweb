@@ -1,0 +1,802 @@
+/* ======================
+   Общие переменные и сброс
+====================== */
+
+:root {
+  --bg: #141414;
+  --card-bg: #404040;
+  --text: #ffffff;
+  --text-secondary: #b0b0b8;
+  --accent: #ff4040;
+  --accent-glow: rgba(255, 42, 32, 0.4);
+  --border: #25252a;
+
+  --font-headings: 'Bebas Neue', sans-serif;
+  --font-digital: 'Orbitron', monospace;
+  --font-body: 'Exo 2', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ======================
+   Header & Navigation
+====================== */
+
+.header {
+  background-color: rgba(9, 9, 11, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--font-headings);
+  font-size: 2.2rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: var(--text);
+  font-weight: 600;
+  transition: color 0.2s;
+  position: relative;
+  font-family: var(--font-headings);
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--accent);
+}
+
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* ======================
+   Buttons
+====================== */
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20px;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(25deg);
+  transition: all 0.6s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:hover::after {
+  left: 120%;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 8px rgba(255, 42, 32, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 42, 32, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-small {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* ======================
+   Hero Section — Видео-фон
+====================== */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  padding-top: 80px; /* компенсация хедера */
+}
+
+.hero-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* Скан-линия */
+.hero-video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 48%,
+    rgba(180, 255, 255, 0.08) 50%,
+    transparent 52%
+  );
+  animation: scan 10s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* Градиентный оверлей */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 9, 11, 0.2) 0%,
+    rgba(9, 9, 11, 0.7) 60%,
+    rgba(9, 9, 11, 0.95) 100%
+  );
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Контент поверх видео */
+.hero-content {
+  z-index: 1;
+  color: white;
+  max-width: 800px;
+  padding: 0 1rem;
+}
+
+.hero-logo {
+  align-content: ce;
+  margin-bottom: 1.5rem;
+  max-width: 670px;
+  width: 100%;
+}
+
+.hero-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-content .dates {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: center;
+  font-size: 6rem;
+  color: #ffff2e;
+  margin-bottom: 1.5rem;
+}
+
+/* Fallback текст */
+.hero-fallback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: var(--font-headings);
+  font-size: 3rem;
+  opacity: 0.2;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ======================
+   Content Sections
+====================== */
+
+.info-section,
+.teams-section {
+  padding: 3rem 0;
+}
+
+.content-block {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 2.8rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.content-block h3 {
+  font-family: var(--font-headings);
+  font-size: 2.2rem;
+  margin-bottom: 1.4rem;
+  color: white;
+  text-align: center;
+}
+
+.content-block p {
+  font-size: 1.12rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 1.1rem;
+}
+
+.info-section .content-block {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.teams-section .content-block {
+  padding: 2.2rem;
+}
+
+.teams-note {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.teams-grid {
+  padding-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+  margin: 0 auto;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 2px;
+  padding: 4rem 0.6rem;
+  text-align: center;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+}
+
+.team-placeholder {
+  font-style: bold;
+  font-size: 2.8rem;
+  margin-bottom: 0.6rem;
+  line-height: 1;
+}
+
+.team-card span {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-family: var(--font-headings);
+  letter-spacing: 0.5px;
+}
+
+/* ======================
+   Tickets Grid
+====================== */
+
+.tickets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+  margin: 2.2rem 0;
+}
+
+.ticket-card {
+  background: rgba(255, 255, 255, 0.03);;
+  padding: 4rem;
+  border-radius: 2px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.ticket-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5)
+}
+
+.ticket-card h3 {
+  font-family: var(--font-headings);
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: 1px;
+}
+
+.ticket-card p {
+  margin-bottom: 0.8rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.price {
+  font-family: var(--font-digital);
+  font-size: 1.6rem;
+  margin: 0.9rem 0;
+  font-weight: 600;
+}
+
+/* ======================
+   Tickets + Cart Page
+====================== */
+
+.tickets-checkout-page {
+  padding: 2.5rem 0;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.2rem;
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-family: var(--font-headings);
+}
+
+.qty-btn:hover {
+  background: #1a1a1f;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.qty-value {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 600;
+  font-family: var(--font-digital);
+}
+
+.cart-sidebar { 
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.8rem;
+  border-radius: 2px;
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+}
+
+.cart-items {
+  margin-bottom: 1.6rem;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.empty-cart {
+  color: var(--text-secondary);
+  text-align: center;
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item small {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+.promo-input {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.promo-input input {
+  flex: 1;
+  padding: 0.6rem;
+  background: #1a1a1f;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 2px;
+  font-family: var(--font-body);
+}
+
+.promo-input input::placeholder {
+  color: #666;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  margin: 1.2rem 0;
+  font-weight: 700;
+  font-family: var(--font-digital);
+}
+
+/* ======================
+   Checkout Page
+====================== */
+
+.checkout-page {
+  padding: 2.5rem 0;
+}
+
+.checkout-page h2 {
+  font-family: var(--font-headings);
+  font-size: 2.4rem;
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.4rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  font-family: var(--font-headings);
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.form-group label input[type='radio'] {
+  width: auto;
+  margin-right: 0.6rem;
+}
+
+.order-summary {
+  background: var(--card-bg);
+  padding: 1.8rem;
+  border-radius: 2px;
+  margin: 1.8rem 0;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.order-summary h3 {
+  font-family: var(--font-headings);
+  margin-bottom: 1.1rem;
+}
+
+.order-summary ul {
+  list-style: none;
+  margin-bottom: 1.2rem;
+}
+
+.order-summary li {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-body);
+}
+
+.order-summary li:last-child {
+  border-bottom: none;
+}
+
+/* ======================
+   Confirmation Page
+====================== */
+
+.confirmation-page {
+  padding: 2.5rem 0;
+}
+
+.confirmation-box {
+  text-align: center;
+  padding: 2.5rem;
+  background: var(--card-bg);
+  border-radius: 2px;
+  margin: 3rem auto;
+  max-width: 620px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+.check-icon {
+  font-family: var(--font-digital);
+  font-size: 5rem;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 16px var(--accent-glow);
+}
+
+#qrcode {
+  margin: 24px auto;
+  width: 200px;
+  height: 200px;
+}
+
+/* ======================
+   About Page
+====================== */
+
+.about-page h2,
+.about-page h3 {
+  font-family: var(--font-headings);
+  margin: 1.8rem 0 1.2rem;
+}
+
+.about-page p, .about-page li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.about-page details {
+  margin-bottom: 1.2rem;
+  background: var(--card-bg);
+  padding: 1.2rem;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.about-page summary {
+  font-family: var(--font-headings);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.about-page summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ======================
+   Footer
+====================== */
+
+.footer {
+  background: #060608;
+  padding: 2.2rem 0;
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+}
+
+.footer a {
+  text-decoration: none;
+  font-family: var(--font-headings);
+  letter-spacing: 0.5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ======================
+   Адаптивность
+====================== */
+
+@media (max-width: 992px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-sidebar {
+    position: static;
+    margin-top: 2rem;
+  }
+
+  .hero-content .dates {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  .hero-content .dates {
+    font-size: 1.6rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 0.6rem;
+  }
+
+  .promo-input {
+    flex-direction: column;
+  }
+
+  .promo-input button {
+    width: 100%;
+  }
+
+  .teams-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
+  }
+
+  .team-placeholder {
+    font-size: 2.2rem;
+  }
+
+  .content-block {
+    padding: 2rem;
+  }
+
+  .checkout-page h2,
+  .confirmation-box h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-logo {
+    max-width: 280px;
+  }
+
+  .hero-content .dates {
+    font-size: 1.4rem;
+  }
+
+  .ticket-card {
+    padding: 1.3rem;
+  }
+
+  .confirmation-box {
+    padding: 1.8rem;
+  }
+
+  .teams-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-card {
+    padding: 1rem 0.3rem;
+  }
+
+  .team-placeholder {
+    font-size: 1.9rem;
+  }
+
+  .content-block {
+    padding: 1.6rem;
+  }
+
+  .content-block h3 {
+    font-size: 1.8rem;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+}

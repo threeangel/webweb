@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Оформление — IEM Cologne Major 2026</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">IEM Cologne 2026</h1>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="tickets.html">Билеты</a>
+        <a href="about.html">О событии</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container checkout-page">
+    <form id="orderForm">
+      <div class="form-group">
+        <label for="name">Имя и фамилия</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Электронная почта</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="country">Страна</label>
+        <select id="country" required>
+          <option value="">— Выберите —</option>
+          <option value="RU">Россия</option>
+          <option value="DE">Германия</option>
+          <option value="US">США</option>
+          <option value="Other">Другая</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Способ получения билета</label><br>
+        <label><input type="radio" name="delivery" value="pdf" checked> Электронный PDF</label><br>
+        <label><input type="radio" name="delivery" value="qr"> QR-код на входе</label>
+      </div>
+
+      <div class="order-summary">
+        <h3>Ваш заказ</h3>
+        <ul id="orderItems"></ul>
+        <p>Итого: <strong id="totalPrice">€0</strong></p>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Подтвердить покупку</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 ESL Gaming. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Загружаем корзину
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart = cart.filter(item => item.quantity > 0);
+
+    if (cart.length === 0) {
+      alert('Корзина пуста!');
+      window.location.href = 'tickets.html';
+    }
+
+    const itemsList = document.getElementById('orderItems');
+    let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    document.getElementById('totalPrice').textContent = `€${total.toFixed(2)}`;
+
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name} × ${item.quantity} — €${(item.price * item.quantity).toFixed(2)}`;
+      itemsList.appendChild(li);
+    });
+
+    // Валидация
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const country = document.getElementById('country').value;
+      if (name.length < 2) {
+        alert('Имя должно содержать минимум 2 символа');
+        return false;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Некорректный email');
+        return false;
+      }
+      if (!country) {
+        alert('Выберите страну');
+        return false;
+      }
+      return true;
+    }
+
+    // Отправка
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!validateForm()) return;
+
+      const orderData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        country: document.getElementById('country').value,
+        delivery: document.querySelector('input[name="delivery"]:checked').value,
+        items: cart,
+        total: total,
+        orderId: 'IEM26-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+      };
+
+      localStorage.setItem('lastOrder', JSON.stringify(orderData));
+      localStorage.removeItem('cart'); // ОЧИЩАЕМ корзину после покупки
+      window.location.href = 'confirmation.html';
+    });
+  </script>
+</body>
+</html>

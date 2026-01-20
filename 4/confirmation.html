@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Подтверждение — IEM Cologne Major 2026</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">IEM Cologne 2026</h1>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="tickets.html">Билеты</a>
+        <a href="about.html">О событии</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container confirmation-page">
+    <div class="confirmation-box">
+      <div class="check-icon">✓</div>
+      <h2>Спасибо за покупку!</h2>
+      <p>Ваш заказ успешно оформлен.</p>
+
+      <div id="orderDetails"></div>
+
+      <div id="qrcode" style="margin: 20px auto; width: 200px; height: 200px;"></div>
+
+      <a href="index.html" class="btn btn-primary full-width">На главную</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 ESL Gaming. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <!-- QR Code Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const order = JSON.parse(localStorage.getItem('lastOrder'));
+    if (!order) {
+      alert('Нет данных о заказе!');
+      window.location.href = 'index.html';
+    }
+
+    const details = document.getElementById('orderDetails');
+    details.innerHTML = `
+      <p><strong>ID заказа:</strong> ${order.orderId}</p>
+      <p><strong>Email:</strong> ${order.email}</p>
+      <p><strong>Итого:</strong> €${order.total.toFixed(2)}</p>
+    `;
+
+    // Генерация QR
+    new QRCode(document.getElementById("qrcode"), {
+      text: `IEM26:${order.orderId}`,
+      width: 200,
+      height: 200,
+      colorDark: "#ff3b30",
+      colorLight: "#1a1a1d"
+    });
+  </script>
+</body>
+</html>
